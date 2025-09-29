@@ -1,4 +1,5 @@
 import '../core/app_export.dart';
+import '../theme/app_styles.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -8,95 +9,168 @@ class WelcomeScreen extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
+    final theme = Theme.of(context);
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          // Background shapes
-          Positioned(
-            top: 0,
-            left: 0,
-            child: Image.asset(
-              'assets/welcome/left-rec.png',
-              width: width,
-              fit: BoxFit.fill,
+      body: DecoratedBox(
+        decoration: const BoxDecoration(gradient: AppGradients.aurora),
+        child: Stack(
+          children: [
+            Positioned(
+              top: -height * 0.1,
+              right: -width * 0.2,
+              child: Container(
+                width: width * 0.8,
+                height: width * 0.8,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: theme.colorScheme.primary.withOpacity(0.2),
+                ),
+              ),
             ),
-          ),
-          Positioned(
-            top: 0,
-            right: 0,
-            child: Image.asset(
-              'assets/welcome/right-rec.png',
-              width: width,
-              fit: BoxFit.fill,
+            Positioned(
+              bottom: -height * 0.25,
+              left: -width * 0.2,
+              child: Container(
+                width: width * 0.9,
+                height: width * 0.9,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: theme.colorScheme.secondary.withOpacity(0.25),
+                ),
+              ),
             ),
-          ),
-          // Main content
-          Positioned(
-            top: height * 0.5,
-            left: width * 0.1,
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  // Greeting text
-                  Text(
-                    'Hello!',
-                    style: TextStyle(
-                      fontSize: 50,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.primary,
-                      // Adjust color as needed
+            SafeArea(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 28,
+                          backgroundColor: theme.colorScheme.primaryContainer,
+                          child: Icon(Icons.spa,
+                              color: theme.colorScheme.primary, size: 28),
+                        ),
+                        const SizedBox(width: 16),
+                        Text(
+                          'AyurDiet Pro',
+                          style: theme.textTheme.headlineMedium?.copyWith(
+                            color: theme.colorScheme.onPrimary,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  // const SizedBox(height: 10),
-                  Text(
-                    'Let\'s get started',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onPrimary, // Adjust color as needed
+                    const SizedBox(height: 48),
+                    Text(
+                      'Holistic nutrition, intelligently orchestrated',
+                      style: theme.textTheme.headlineLarge?.copyWith(
+                        color: theme.colorScheme.onPrimary,
+                      ),
                     ),
-                  ),
-                ]),
-          ),
-          // const SizedBox(height: 20),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: width * 0.7,
+                      child: Text(
+                        'Fuse macronutrient precision with Ayurvedic rasa, guna and virya intelligence for every patient’s prakriti.',
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: theme.colorScheme.onPrimary.withOpacity(0.88),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Container(
+                      width: double.infinity,
+                      decoration: AppDecorations.glassSurface(context: context),
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Prototype showcase',
+                            style: theme.textTheme.titleLarge,
+                          ),
+                          const SizedBox(height: 12),
+                          Wrap(
+                            spacing: 16,
+                            runSpacing: 12,
+                            children: const [
+                              _HighlightChip(
+                                  icon: Icons.people_alt_outlined,
+                                  label: 'Patient cockpit with prakriti tags'),
+                              _HighlightChip(
+                                  icon: Icons.auto_awesome,
+                                  label:
+                                      'AI diet generator with rasa/virya context'),
+                              _HighlightChip(
+                                  icon: Icons.notifications_active_outlined,
+                                  label:
+                                      'Patient reminders & swap experiences'),
+                            ],
+                          ),
+                          const SizedBox(height: 24),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ElevatedButton(
+                                  onPressed: () => Navigator.of(context)
+                                      .pushReplacementNamed('/dashboard'),
+                                  child: const Text(
+                                      'Enter practitioner dashboard'),
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: OutlinedButton(
+                                  onPressed: () => Navigator.of(context)
+                                      .pushNamed('/patientApp'),
+                                  child: const Text('Preview patient app'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
-          Positioned(
-              bottom: height * 0.1,
-              left: width * 0.1,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  // Sign in button
-                  CustomButton(
-                    text: 'Sign in',
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/signin');
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  // Sign up button
-                  CustomButton(
-                    text: 'Create an account',
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/signup');
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'Terms & Conditions',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
-                    ),
-                  )
-                ],
-              ))
+class _HighlightChip extends StatelessWidget {
+  const _HighlightChip({required this.icon, required this.label});
+
+  final IconData icon;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface.withOpacity(0.9),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 18, color: theme.colorScheme.primary),
+          const SizedBox(width: 10),
+          Text(
+            label,
+            style: theme.textTheme.bodyMedium
+                ?.copyWith(fontWeight: FontWeight.w600),
+          ),
         ],
       ),
     );

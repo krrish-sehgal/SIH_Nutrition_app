@@ -5,26 +5,35 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
 import 'package:nutrition_app/main.dart';
+import 'package:nutrition_app/notifiers/patient_notifier.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Welcome screen flows to practitioner dashboard',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => PatientNotifier()),
+        ],
+        child: const MyApp(),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Allow the splash screen timer to elapse.
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pumpAndSettle();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    expect(find.text('AyurDiet Pro'), findsOneWidget);
+    expect(find.textContaining('Prototype highlights'), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    await tester.tap(find.text('Enter Practitioner Dashboard'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('AyurDiet Practitioner'), findsOneWidget);
+    expect(find.textContaining('Holistic practice cockpit'), findsOneWidget);
   });
 }

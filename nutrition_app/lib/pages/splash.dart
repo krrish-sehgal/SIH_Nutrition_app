@@ -10,29 +10,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _checkLoginStatus();
+    _navigateToWelcome();
   }
 
-  Future<void> _checkLoginStatus() async {
-    final prefs = await SharedPreferences.getInstance();
-    final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-
-    // Delay for 3 seconds, then navigate to the appropriate screen
-    await Future.delayed(const Duration(seconds: 3));
-    if (isLoggedIn) {
-      Navigator.of(context)
-          .pushReplacementNamed('/currentPage'); // Home screen route
-    } else {
-      Navigator.of(context)
-          .pushReplacementNamed('/welcome'); // Welcome/Login screen route
-    }
+  Future<void> _navigateToWelcome() async {
+    await Future.delayed(const Duration(seconds: 2));
+    if (!mounted) return;
+    Navigator.of(context).pushReplacementNamed('/welcome');
   }
 
   @override
   Widget build(BuildContext context) {
     // Use MediaQuery to make it responsive
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Stack(

@@ -20,11 +20,17 @@ export '../widgets/Commons/custom_navbar.dart';
 export '../widgets/Commons/custom_feature_card.dart';
 export '../widgets/Commons/custom_blog_card.dart';
 
-export '../pages/sign_in.dart';
-export '../pages/sign_up.dart';
 export '../pages/welcome_screen.dart';
 export '../pages/splash.dart';
 export '../theme/theme.dart';
+export '../pages/practitioner_dashboard.dart';
+export '../pages/patient_profile.dart';
+export '../pages/diet_generator.dart';
+export '../pages/diet_plan_view.dart';
+export '../pages/meal_detail.dart';
+export '../pages/patient_view.dart';
+export '../pages/sign_in.dart';
+export '../pages/sign_up.dart';
 export '../pages/trackers.dart';
 export '../pages/current.dart';
 export "../pages/profile.dart";
@@ -36,6 +42,7 @@ export "../pages/features/blog.dart";
 export "../pages/features/add_blog.dart";
 export "../pages/dietplan.dart";
 
+export '../notifiers/patient_notifier.dart';
 export '../notifiers/auth_notifier.dart';
 export '../notifiers/bottom_nav_notifier.dart';
 export '../notifiers/food_notifiers.dart';
@@ -45,6 +52,13 @@ export '../notifiers/workout_notifiers.dart';
 export '../notifiers/blog_notifiers.dart';
 export '../notifiers/dietplan_notifier.dart';
 
+export '../models/ayurveda_models.dart';
+export '../models/navigation_args.dart';
+export '../models/user.dart';
+export '../models/food_item.dart';
+export '../models/workout_item.dart';
+export '../models/blog_item.dart';
+
 export '../repositories/food_repository.dart';
 export '../repositories/user_repository.dart';
 export '../repositories/workout_repository.dart';
@@ -53,11 +67,6 @@ export '../repositories/blog_repository.dart';
 export '../cards/expanding_text_food_track.dart';
 export '../cards/expanding_img_food_track.dart';
 export '../cards/expanding_workout_track.dart';
-
-export '../models/user.dart';
-export '../models/food_item.dart';
-export '../models/workout_item.dart';
-export '../models/blog_item.dart';
 
 export 'dart:convert';
 export 'package:mime/mime.dart';

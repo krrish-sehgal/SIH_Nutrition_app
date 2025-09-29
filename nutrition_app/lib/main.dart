@@ -5,18 +5,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-            create: (_) => AuthNotifier()), // Provide AuthNotifier
-        ChangeNotifierProvider(create: (_) => SearchFoodNotifier()),
-        ChangeNotifierProvider(create: (_) => NutritionInfoNotifier()),
-        ChangeNotifierProvider(create: (_) => LogFoodNotifier()),
-        ChangeNotifierProvider(create: (_) => FoodConsumedNotifier()),
-        ChangeNotifierProvider(create: (_) => ChatbotNotifier()),
-        ChangeNotifierProvider(create: (_) => DashboardNotifier()),
-        ChangeNotifierProvider(create: (_) => SearchWorkoutNotifier()),
-        ChangeNotifierProvider(create: (_) => WorkoutInfoNotifier()),
-        ChangeNotifierProvider(create: (_) => LogWorkoutNotifier()),
-        ChangeNotifierProvider(create: (_) => BlogNotifier()),
+        ChangeNotifierProvider(create: (_) => PatientNotifier()),
       ],
       child: const MyApp(),
     ),
@@ -35,11 +24,12 @@ class MyApp extends StatelessWidget {
       routes: {
         '/splash': (context) => const SplashScreen(),
         '/welcome': (context) => const WelcomeScreen(),
-        '/signin': (context) => const SigninPage(),
-        '/currentPage': (context) => const CurrentPage(),
-        '/signup': (context) => const SignupPage(),
-        '/dashboard': (context) => const DashboardPage(),
-        '/features': (context) => const FeaturesPage(),
+        '/dashboard': (context) => const PractitionerDashboardPage(),
+        '/patientProfile': (context) => const PatientProfilePage(),
+        '/dietGenerator': (context) => const DietGeneratorPage(),
+        '/dietChart': (context) => const DietPlanViewPage(),
+        '/mealDetail': (context) => const MealDetailPage(),
+        '/patientApp': (context) => const PatientViewPage(),
       },
     );
   }
