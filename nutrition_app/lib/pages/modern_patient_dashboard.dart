@@ -604,19 +604,20 @@ class _ModernPatientDashboardState extends State<ModernPatientDashboard>
         ),
         const SizedBox(height: 16),
         SizedBox(
-          height: 100,
+          height: 120, // Increased height to accommodate content
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: achievements.length,
             itemBuilder: (context, index) {
               final achievement = achievements[index];
               return Container(
-                width: 80,
+                width: 85, // Slightly increased width
                 margin: const EdgeInsets.only(right: 16),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min, // Use minimum space
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(12), // Reduced padding
                       decoration: BoxDecoration(
                         color: achievement.isUnlocked 
                             ? achievement.color.withOpacity(0.1)
@@ -634,22 +635,24 @@ class _ModernPatientDashboardState extends State<ModernPatientDashboard>
                         color: achievement.isUnlocked 
                             ? achievement.color 
                             : Colors.grey,
-                        size: 24,
+                        size: 20, // Slightly smaller icon
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      achievement.title,
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: achievement.isUnlocked 
-                            ? Colors.black87 
-                            : Colors.grey,
+                    const SizedBox(height: 6), // Reduced spacing
+                    Flexible( // Use Flexible to prevent overflow
+                      child: Text(
+                        achievement.title,
+                        style: TextStyle(
+                          fontSize: 11, // Slightly smaller font
+                          fontWeight: FontWeight.w600,
+                          color: achievement.isUnlocked 
+                              ? Colors.black87 
+                              : Colors.grey,
+                        ),
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
