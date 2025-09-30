@@ -423,9 +423,16 @@ class NutritionTrackingPage extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(nutrient),
-            const Spacer(),
-            Text('$current / $target $unit'),
+            Expanded(
+              child: Text(
+                nutrient,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Text(
+              '$current / $target $unit',
+              overflow: TextOverflow.ellipsis,
+            ),
           ],
         ),
         const SizedBox(height: 8),
@@ -929,9 +936,11 @@ class WaterTrackingDialog extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildWaterButton('250ml', context),
-              _buildWaterButton('500ml', context),
-              _buildWaterButton('750ml', context),
+              Expanded(child: _buildWaterButton('250ml', context)),
+              const SizedBox(width: 8),
+              Expanded(child: _buildWaterButton('500ml', context)),
+              const SizedBox(width: 8),
+              Expanded(child: _buildWaterButton('750ml', context)),
             ],
           ),
         ],
@@ -1076,19 +1085,33 @@ class RecipesPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Row(
+                      Wrap(
+                        spacing: 12,
                         children: [
-                          Icon(Icons.access_time, size: 16, color: Colors.grey[600]),
-                          const SizedBox(width: 4),
-                          Text('${recipe.cookingTime} min'),
-                          const SizedBox(width: 16),
-                          Icon(Icons.restaurant, size: 16, color: Colors.grey[600]),
-                          const SizedBox(width: 4),
-                          Text('${recipe.servings} servings'),
-                          const SizedBox(width: 16),
-                          Icon(Icons.trending_up, size: 16, color: Colors.grey[600]),
-                          const SizedBox(width: 4),
-                          Text(recipe.difficulty),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.access_time, size: 16, color: Colors.grey[600]),
+                              const SizedBox(width: 4),
+                              Text('${recipe.cookingTime} min'),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.restaurant, size: 16, color: Colors.grey[600]),
+                              const SizedBox(width: 4),
+                              Text('${recipe.servings} servings'),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.trending_up, size: 16, color: Colors.grey[600]),
+                              const SizedBox(width: 4),
+                              Text(recipe.difficulty),
+                            ],
+                          ),
                         ],
                       ),
                       const SizedBox(height: 12),

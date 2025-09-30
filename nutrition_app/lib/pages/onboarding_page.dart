@@ -215,9 +215,11 @@ class _OnboardingPageState extends State<OnboardingPage>
             )),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
                   // Icon
                   Container(
                     padding: const EdgeInsets.all(AppSpacing.xxl),
@@ -301,6 +303,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                     ),
                   ),
                 ],
+                ),
               ),
             ),
           ),

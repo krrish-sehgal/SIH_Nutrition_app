@@ -76,6 +76,7 @@ class _ModernPatientDashboardState extends State<ModernPatientDashboard>
         ],
         body: TabBarView(
           controller: _tabController,
+          physics: const NeverScrollableScrollPhysics(), // Disable swipe gestures
           children: [
             _buildDashboardTab(),
             _buildHealthTab(),
