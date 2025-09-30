@@ -48,14 +48,7 @@ Important: Always recommend consulting with healthcare professionals for serious
         contextualPrompt += '\nAdditional Context: ${context.toString()}';
       }
 
-      final gemini = Gemini.instance;
-      final response = await gemini.text(
-        '$contextualPrompt\n\nUser Question: $message',
-        generationConfig: GenerationConfig(
-          temperature: 0.7,
-          maxOutputTokens: 1024,
-        ),
-      );
+      final response = await Gemini.instance.text('$contextualPrompt\n\nUser Question: $message');
 
       print('Gemini API Response: ${response?.output}');
 

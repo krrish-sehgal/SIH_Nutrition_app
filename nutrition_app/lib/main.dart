@@ -5,7 +5,7 @@ import 'pages/modern_patient_dashboard.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
-  Gemini.init(apiKey: dotenv.env['GEMINI_API_KEY']!);
+  Gemini.init(apiKey: dotenv.env['GEMINI_API_KEY']!, enableDebugging: true);
   runApp(
     MultiProvider(
       providers: [
