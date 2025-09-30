@@ -80,58 +80,60 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Spacer(),
-                    Container(
-                      width: double.infinity,
-                      decoration: AppDecorations.glassSurface(context: context),
-                      padding: const EdgeInsets.all(24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Prototype showcase',
-                            style: theme.textTheme.titleLarge,
-                          ),
-                          const SizedBox(height: 12),
-                          Wrap(
-                            spacing: 16,
-                            runSpacing: 12,
-                            children: const [
-                              _HighlightChip(
-                                  icon: Icons.people_alt_outlined,
-                                  label: 'Patient cockpit with prakriti tags'),
-                              _HighlightChip(
-                                  icon: Icons.auto_awesome,
-                                  label:
-                                      'AI diet generator with rasa/virya context'),
-                              _HighlightChip(
-                                  icon: Icons.notifications_active_outlined,
-                                  label:
-                                      'Patient reminders & swap experiences'),
-                            ],
-                          ),
-                          const SizedBox(height: 24),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: ElevatedButton(
-                                  onPressed: () => Navigator.of(context)
-                                      .pushReplacementNamed('/dashboard'),
-                                  child: const Text(
-                                      'Enter practitioner dashboard'),
+                    Flexible(
+                      child: Container(
+                        width: double.infinity,
+                        decoration: AppDecorations.glassSurface(context: context),
+                        padding: const EdgeInsets.all(20),
+                        margin: const EdgeInsets.only(top: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'Prototype showcase',
+                              style: theme.textTheme.titleLarge,
+                            ),
+                            const SizedBox(height: 10),
+                            const Wrap(
+                              spacing: 12,
+                              runSpacing: 8,
+                              alignment: WrapAlignment.start,
+                              children: [
+                                _HighlightChip(
+                                    icon: Icons.people_alt_outlined,
+                                    label: 'Patient cockpit with prakriti tags'),
+                                _HighlightChip(
+                                    icon: Icons.auto_awesome,
+                                    label: 'AI diet generator with rasa/virya context'),
+                                _HighlightChip(
+                                    icon: Icons.notifications_active_outlined,
+                                    label: 'Patient reminders & swap experiences'),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: ElevatedButton(
+                                    onPressed: () => Navigator.of(context)
+                                        .pushReplacementNamed('/dashboard'),
+                                    child: const Text(
+                                        'Enter practitioner dashboard'),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(width: 16),
-                              Expanded(
-                                child: OutlinedButton(
-                                  onPressed: () => Navigator.of(context)
-                                      .pushNamed('/patientApp'),
-                                  child: const Text('Preview patient app'),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: OutlinedButton(
+                                    onPressed: () => Navigator.of(context)
+                                        .pushNamed('/patientApp'),
+                                    child: const Text('Preview patient app'),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -155,23 +157,29 @@ class _HighlightChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface.withOpacity(0.9),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(color: theme.colorScheme.outlineVariant),
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 18, color: theme.colorScheme.primary),
-          const SizedBox(width: 10),
-          Text(
-            label,
-            style: theme.textTheme.bodyMedium
-                ?.copyWith(fontWeight: FontWeight.w600),
-          ),
-        ],
+      child: IntrinsicWidth(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 16, color: theme.colorScheme.primary),
+            const SizedBox(width: 8),
+            Flexible(
+              child: Text(
+                label,
+                style: theme.textTheme.bodySmall
+                    ?.copyWith(fontWeight: FontWeight.w600),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
