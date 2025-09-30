@@ -1,4 +1,5 @@
 import '../core/app_export.dart';
+import '../widgets/mode_switcher_dialog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -123,6 +124,13 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text("Home"),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.swap_horiz_rounded),
+            tooltip: 'Switch app mode',
+            onPressed: () => showModeSwitcher(context, currentMode: AppMode.patient),
+          ),
+        ],
       ),
       body: Column(
         children: [

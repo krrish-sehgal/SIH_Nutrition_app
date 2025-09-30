@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../notifiers/chatbot_notifier.dart';
+import '../widgets/custom_back_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class ChatbotPage extends StatefulWidget {
@@ -29,8 +30,8 @@ class _ChatbotPageState extends State<ChatbotPage> {
     final chatbotNotifier = Provider.of<ChatbotNotifier>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chatbot'),
+      appBar: const CustomBackAppBar(
+        title: 'Chatbot',
       ),
       body: Column(
         children: [

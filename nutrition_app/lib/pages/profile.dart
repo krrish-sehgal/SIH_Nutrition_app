@@ -1,4 +1,5 @@
 import '../core/app_export.dart';
+import '../widgets/custom_back_app_bar.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -6,8 +7,8 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Profile"),
+      appBar: const CustomBackAppBar(
+        title: "Profile",
       ),
       body: Column(
         children: [
