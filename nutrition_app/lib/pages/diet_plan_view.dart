@@ -1,5 +1,4 @@
 import '../core/app_export.dart';
-import '../widgets/custom_back_app_bar.dart';
 
 class DietPlanViewPage extends StatefulWidget {
   const DietPlanViewPage({Key? key}) : super(key: key);
@@ -33,9 +32,17 @@ class _DietPlanViewPageState extends State<DietPlanViewPage> {
         final showLifestyleTips = notifier.lifestyleTipsEnabled(patient.id);
 
         return Scaffold(
-          appBar: CustomBackAppBar(
-            title: '${patient.name}\'s diet chart',
-            subtitle: '${plan?.goal ?? '—'} · ${patient.prakriti} prakriti',
+          appBar: AppBar(
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('${patient.name}\'s diet chart'),
+                Text(
+                  '${plan?.goal ?? '—'} · ${patient.prakriti} prakriti',
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+            ),
             actions: [
               IconButton(
                 icon: const Icon(Icons.ios_share_outlined),

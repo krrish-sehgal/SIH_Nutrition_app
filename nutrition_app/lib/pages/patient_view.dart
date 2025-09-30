@@ -1,6 +1,4 @@
 import '../core/app_export.dart';
-import '../widgets/custom_back_app_bar.dart';
-import '../widgets/mode_switcher_dialog.dart';
 
 class PatientViewPage extends StatefulWidget {
   const PatientViewPage({Key? key}) : super(key: key);
@@ -27,8 +25,8 @@ class _PatientViewPageState extends State<PatientViewPage> {
         final plan = notifier.planForPatient(patient.id);
 
         return Scaffold(
-          appBar: CustomBackAppBar(
-            title: 'Patient app preview',
+          appBar: AppBar(
+            title: const Text('Patient app preview'),
             actions: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -51,11 +49,6 @@ class _PatientViewPageState extends State<PatientViewPage> {
                     },
                   ),
                 ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.swap_horiz_rounded),
-                tooltip: 'Switch to practitioner mode',
-                onPressed: () => showModeSwitcher(context, currentMode: AppMode.patient),
               ),
             ],
           ),

@@ -1,6 +1,5 @@
 import '../core/app_export.dart';
 import '../theme/app_styles.dart';
-import '../widgets/mode_switcher_dialog.dart';
 
 class PractitionerDashboardPage extends StatelessWidget {
   const PractitionerDashboardPage({Key? key}) : super(key: key);
@@ -27,42 +26,6 @@ class PractitionerDashboardPage extends StatelessWidget {
               icon: const Icon(Icons.phone_iphone_outlined),
               tooltip: 'Patient app preview',
               onPressed: () => Navigator.of(context).pushNamed('/patientApp'),
-            ),
-            IconButton(
-              icon: const Icon(Icons.swap_horiz_rounded),
-              tooltip: 'Switch app mode',
-              onPressed: () => showModeSwitcher(context, currentMode: AppMode.practitioner),
-            ),
-            PopupMenuButton<String>(
-              icon: const Icon(Icons.more_vert),
-              tooltip: 'More options',
-              onSelected: (value) => _handleMenuAction(context, value),
-              itemBuilder: (context) => [
-                const PopupMenuItem(
-                  value: 'switch_mode',
-                  child: ListTile(
-                    leading: Icon(Icons.swap_horiz_rounded),
-                    title: Text('Switch Mode'),
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                ),
-                const PopupMenuItem(
-                  value: 'settings',
-                  child: ListTile(
-                    leading: Icon(Icons.settings_outlined),
-                    title: Text('Settings'),
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                ),
-                const PopupMenuItem(
-                  value: 'logout',
-                  child: ListTile(
-                    leading: Icon(Icons.logout_rounded),
-                    title: Text('Sign Out'),
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                ),
-              ],
             ),
             const SizedBox(width: 8),
           ],
@@ -127,43 +90,6 @@ class PractitionerDashboardPage extends StatelessWidget {
             },
           ),
         ));
-  }
-
-  void _handleMenuAction(BuildContext context, String action) {
-    switch (action) {
-      case 'switch_mode':
-        showModeSwitcher(context, currentMode: AppMode.practitioner);
-        break;
-      case 'settings':
-        Navigator.of(context).pushNamed('/settings');
-        break;
-      case 'logout':
-        _showLogoutDialog(context);
-        break;
-    }
-  }
-
-  void _showLogoutDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Sign Out'),
-        content: const Text('Are you sure you want to sign out?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pushReplacementNamed('/welcome');
-            },
-            child: const Text('Sign Out'),
-          ),
-        ],
-      ),
-    );
   }
 
   void _showPatientSelector(BuildContext context) {
@@ -432,20 +358,15 @@ class _PatientCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(
-                  child: TextButton.icon(
-                    onPressed: onOpenProfile,
-                    icon: const Icon(Icons.person_outline),
-                    label: const Text('Open profile'),
-                  ),
+                TextButton.icon(
+                  onPressed: onOpenProfile,
+                  icon: const Icon(Icons.person_outline),
+                  label: const Text('Open profile'),
                 ),
-                const SizedBox(width: 8),
-                Flexible(
-                  child: ElevatedButton.icon(
-                    onPressed: onGeneratePlan,
-                    icon: const Icon(Icons.auto_fix_high_outlined),
-                    label: const Text('Generate plan'),
-                  ),
+                ElevatedButton.icon(
+                  onPressed: onGeneratePlan,
+                  icon: const Icon(Icons.auto_fix_high_outlined),
+                  label: const Text('Generate plan'),
                 ),
               ],
             ),

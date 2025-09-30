@@ -1,5 +1,4 @@
 import '../core/app_export.dart';
-import '../widgets/custom_back_app_bar.dart';
 
 class PatientProfilePage extends StatefulWidget {
   const PatientProfilePage({Key? key}) : super(key: key);
@@ -29,9 +28,17 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
         final plan = notifier.planForPatient(patient.id);
 
         return Scaffold(
-          appBar: CustomBackAppBar(
-            title: patient.name,
-            subtitle: '${patient.prakriti} prakriti · ${patient.healthTags.join(' / ')}',
+          appBar: AppBar(
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(patient.name),
+                Text(
+                  '${patient.prakriti} prakriti · ${patient.healthTags.join(' / ')}',
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+            ),
           ),
           body: ListView(
             padding: const EdgeInsets.all(20),

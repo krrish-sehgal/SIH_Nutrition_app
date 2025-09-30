@@ -23,10 +23,17 @@ class MyApp extends StatelessWidget {
       initialRoute: '/splash',
       routes: {
         '/splash': (context) => const SplashScreen(),
+        '/onboarding': (context) => const OnboardingPage(),
         '/welcome': (context) => const WelcomeScreen(),
-        '/dashboard': (context) => const PractitionerDashboardPage(),
+        '/dashboard': (context) => const ComprehensiveDashboardPage(),
+        '/oldDashboard': (context) => const PractitionerDashboardPage(),
         '/patientProfile': (context) => const PatientProfilePage(),
         '/dietGenerator': (context) => const DietGeneratorPage(),
+        '/enhancedDietGenerator': (context) {
+          final args = ModalRoute.of(context)?.settings.arguments as String?;
+          return EnhancedDietGeneratorPage(patientId: args ?? '');
+        },
+        '/foodSearch': (context) => const FoodSearchPage(),
         '/dietChart': (context) => const DietPlanViewPage(),
         '/mealDetail': (context) => const MealDetailPage(),
         '/patientApp': (context) => const PatientViewPage(),

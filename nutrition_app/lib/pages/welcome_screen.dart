@@ -102,7 +102,8 @@ class WelcomeScreen extends StatelessWidget {
                                   label: 'Patient cockpit with prakriti tags'),
                               _HighlightChip(
                                   icon: Icons.auto_awesome,
-                                  label: 'AI diet generator with rasa/virya'),
+                                  label:
+                                      'AI diet generator with rasa/virya context'),
                               _HighlightChip(
                                   icon: Icons.notifications_active_outlined,
                                   label:
@@ -165,14 +166,10 @@ class _HighlightChip extends StatelessWidget {
         children: [
           Icon(icon, size: 18, color: theme.colorScheme.primary),
           const SizedBox(width: 10),
-          Flexible(
-            child: Text(
-              label,
-              style: theme.textTheme.bodyMedium
-                  ?.copyWith(fontWeight: FontWeight.w600),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-            ),
+          Text(
+            label,
+            style: theme.textTheme.bodyMedium
+                ?.copyWith(fontWeight: FontWeight.w600),
           ),
         ],
       ),
