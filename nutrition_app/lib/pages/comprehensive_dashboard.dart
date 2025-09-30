@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import '../core/app_export.dart';
 import '../theme/app_styles.dart';
-import '../widgets/enhanced_analytics_dashboard.dart';
 
 class ComprehensiveDashboardPage extends StatefulWidget {
   const ComprehensiveDashboardPage({Key? key}) : super(key: key);
@@ -51,6 +49,13 @@ class _ComprehensiveDashboardPageState extends State<ComprehensiveDashboardPage>
           ],
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.phone_android),
+            onPressed: () {
+              Navigator.pushNamed(context, '/modernPatientApp');
+            },
+            tooltip: 'Modern Patient App',
+          ),
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
             onPressed: () {
@@ -169,9 +174,8 @@ class _ComprehensiveDashboardPageState extends State<ComprehensiveDashboardPage>
   Widget _buildAnalyticsTab() {
     return Consumer<PatientNotifier>(
       builder: (context, notifier, _) {
-        return EnhancedAnalyticsDashboard(
-          patient: notifier.patients.isNotEmpty ? notifier.selectedPatient : null,
-          activePlan: notifier.activePlan,
+        return const Center(
+          child: Text('Enhanced Analytics Dashboard Coming Soon'),
         );
       },
     );

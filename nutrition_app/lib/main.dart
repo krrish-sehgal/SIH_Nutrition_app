@@ -1,7 +1,11 @@
+import 'package:flutter_gemini/flutter_gemini.dart';
+
 import 'core/app_export.dart';
+import 'pages/modern_patient_dashboard.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
+  Gemini.init(apiKey: dotenv.env['GEMINI_API_KEY']!);
   runApp(
     MultiProvider(
       providers: [
@@ -36,7 +40,7 @@ class MyApp extends StatelessWidget {
         '/foodSearch': (context) => const FoodSearchPage(),
         '/dietChart': (context) => const DietPlanViewPage(),
         '/mealDetail': (context) => const MealDetailPage(),
-        '/patientApp': (context) => const PatientViewPage(),
+        '/patientApp': (context) => const ModernPatientDashboard(),
       },
     );
   }
